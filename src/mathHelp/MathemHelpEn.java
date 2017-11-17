@@ -1,6 +1,6 @@
 package mathHelp;
 
-public enum Math{
+public enum MathemHelpEn {
     ADD("+"),
     SUBTRACT("-"),
     MULTIPLY("*"),
@@ -8,7 +8,7 @@ public enum Math{
 
     private String stringValue;
 
-    private Math(String value) {
+    private MathemHelpEn(String value) {
         this.stringValue=value;
     }
 
