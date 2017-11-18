@@ -20,7 +20,7 @@ public class Servlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ArrayList<String> examples = new ArrayList<>();
+//        ArrayList<String> examples = new ArrayList<>();
 //        Enumeration en = request.getParameterNames();
 
 
@@ -49,10 +49,13 @@ public class Servlet extends HttpServlet {
 
             double result=calcResult(a1, a2, helpEn);
             pw.println("<h1>User Id = " + request.getSession().getId() + "</h1>");
-            pw.println("<h1>Size = " + examples.size() + "</h1>");
+
             if (session.isNew())
-                examples.clear();
-            else examples = (ArrayList<String>) session.getAttribute("formula1");
+//                examples.clear();
+                session.setAttribute("formula1", new ArrayList<>());
+//            else
+//                examples = (ArrayList<String>) session.getAttribute("formula1");
+            ArrayList<String> examples= new ArrayList<>((ArrayList<String>) session.getAttribute("formula1"));
             examples.add("<h1>" + a1 + " " + helpEn.getStringValue() + " " + a2 + " = " + result + "</h1>");
             session.setAttribute("formula1",examples);
             for (String formula: examples
@@ -60,7 +63,7 @@ public class Servlet extends HttpServlet {
                 pw.println(formula);
             }
 
-
+            pw.println("<h1>Size = " + examples.size() + "</h1>");
 
         } catch (Exception e) {
             pw.println("<h1>Hello world!</h1>");
