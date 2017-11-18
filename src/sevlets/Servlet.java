@@ -55,11 +55,13 @@ public class Servlet extends HttpServlet {
                 session.setAttribute("formula1", new ArrayList<>());
 //            else
 //                examples = (ArrayList<String>) session.getAttribute("formula1");
-            ArrayList<String> examples= new ArrayList<>((ArrayList<String>) session.getAttribute("formula1"));
+            ArrayList<String> examples= new ArrayList<>();
+            examples= (ArrayList<String>) session.getAttribute("formula1");
             examples.add("<h1>" + a1 + " " + helpEn.getStringValue() + " " + a2 + " = " + result + "</h1>");
             session.setAttribute("formula1",examples);
             for (String formula: examples
                     ) {
+
                 pw.println(formula);
             }
 
@@ -67,6 +69,7 @@ public class Servlet extends HttpServlet {
 
         } catch (Exception e) {
             pw.println("<h1>Hello world!</h1>");
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 
         }
         finally {
